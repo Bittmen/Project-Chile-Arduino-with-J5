@@ -2,7 +2,7 @@ const net = require('net');
 const HOST = '127.0.0.1';
 var  PORT = 1234;
 const index = require('./js/main')
-let data = "Hola";
+let data = 0;
 
 //Se crea el servidor
 const server = net.createServer(function(sock) {
@@ -33,14 +33,8 @@ server.addListener('listening', ()=>{
         console.log(`client: ${socket.id}`)
        
         setInterval(function(){
-            socket.emit('sending', data);
+            socket.emit('sending', Math.random() * (30) + 19);
         }, 1000);
-          
-        //Reciviendo algo del cliente
-        socket.on('evento', (num) => {
-          console.log(num);
-        });
-    
     });
 });
 
